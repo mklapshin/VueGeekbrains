@@ -13,8 +13,8 @@ html {
   }
 }
 body {
+  overflow: hidden;
   font-family: 'Open Sans', sans-serif;
-  font-size: 1rem;
 }
 .page-container {
   @include min-max(20rem, 100%, 0);
