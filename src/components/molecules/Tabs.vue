@@ -1,9 +1,9 @@
 <template>
   <div>
     <Tab
-      v-for="tab in tabs"
+      v-for="tab in getTabs"
       :key="tab.id"
-      :tabText="tab.text"
+      :tabText="tab.title"
       :tabChecked="tab.isChecked"
     />
   </div>
