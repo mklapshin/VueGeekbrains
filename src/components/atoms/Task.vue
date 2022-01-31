@@ -70,7 +70,7 @@ export default {
     display: block;
     width: 1.5rem;
     height: 1.5rem;
-    background-color: orange;
+    background-color: #cab17c;
     background: url("../../assets/img/vector.png") center right no-repeat;
     top: 50%;
     left: 50%;
