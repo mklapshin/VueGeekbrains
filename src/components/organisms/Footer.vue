@@ -1,19 +1,25 @@
 <template>
   <footer :class="$style.footer">
     <div :class="$style.footerWrapper">
-      <p :class="$style.footerCount">1/3 left</p>
+      <p :class="$style.footerCount">
+        {{ getActive.length }}/{{ getTasks.length }} left
+      </p>
       <Tabs />
     </div>
   </footer>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Tabs from "../molecules/Tabs.vue";
 
 export default {
   name: "App",
   components: {
     Tabs,
+  },
+  computed: {
+    ...mapGetters(["getTasks", "getActive"]),
   },
 };
 </script>

@@ -5,16 +5,24 @@
       type="radio"
       name="tab"
       :checked="tabChecked"
+      @click="checkTab"
     />
     <span :class="$style.fake">{{ tabText }}</span>
   </label>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   props: {
     tabText: String,
     tabChecked: Boolean,
+  },
+  methods: {
+    ...mapMutations(["changeTabText"]),
+    checkTab() {
+      this.changeTabText(this.tabText);
+    },
   },
 };
 </script>

@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default {
   state: {
+    tabStatus: "All",
     tasks: [
       {
         title: "Task1",
@@ -21,54 +22,53 @@ export default {
     ],
     tabs: [
       {
-        title: 'All',
+        tabTitle: 'All',
         isChecked: true,
       },
       {
-        title: 'Active',
+        tabTitle: 'Active',
         isChecked: false,
       },
       {
-        title: 'Completed',
+        tabTitle: 'Completed',
         isChecked: false,
       },
     ],
-    text: "Hello Misha",
+
 
   },
   getters: {
-    getText(state) {
-      return state.text
-    },
-    getTasks1(state) {
-      return state.tasks
-    },
+
+
     getTasks(state) {
       return state.tasks;
     },
     getTasksCount(state) {
       return state.tasks.length;
     },
-    getTasksFiltered(state) {
-      if (state.filter == 'All') {
-        return state.tasks;
-      } else if (state.filter == 'Active') {
-        return state.tasks.filter(task => !task.isChecked);
-      } else if (state.filter == 'Completed') {
-        return state.tasks.filter(task => task.isChecked);
+    getTasksFiltered(state, getters) {
+
+      switch (state.tabStatus) {
+        case "Active": return getters.getActive;
+        case "Completed": return state.tasks.filter((task) => (task.isChecked == true));
+        default: return getters.getTasks;
       }
-      return state.tasks;
+
     },
-    getCompleted(state) {
-      return state.tasks.filter(task => task.isChecked).length;
+    getActive(state) {
+      return state.tasks.filter((task) => (task.isChecked == false));
     },
+
+
     getTabs(state) {
       return state.tabs;
-    }
+    },
+
 
 
   },
   mutations: {
+
 
     addTask(state, text) {
       state.tasks.push({
@@ -89,6 +89,13 @@ export default {
     },
     filterTasks(state, tabTitle) {
       state.filter = tabTitle;
+    },
+    changeTabText(state, text) {
+      state.tabs.map((tab) => {
+        if (tab.tabTitle == text) {
+          state.tabStatus = tab.tabTitle;
+        }
+      })
     },
   },
   actions: {},

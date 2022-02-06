@@ -3,7 +3,7 @@
     <Tab
       v-for="tab in getTabs"
       :key="tab.id"
-      :tabText="tab.title"
+      :tabText="tab.tabTitle"
       :tabChecked="tab.isChecked"
     />
   </div>
